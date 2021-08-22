@@ -40,6 +40,23 @@ var getJSONData = function(url){
     });
 }
 
+async function getjsondataasyinc(url){
+  showSpinner();
+  try {
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(data) 
+      hideSpinner();
+      return (data);
+  } catch (error) {
+      console.log(error);
+      alert(error)
+      hideSpinner();
+  }
+  
+}
+
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
