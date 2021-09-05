@@ -11,7 +11,8 @@ function Login(){
     var usuario=document.getElementById("usuario").value;
     var password=document.getElementById("password").value; 
     if ((usuario.length >= 6 && usuario.length <= 8) && (password.length >= 6 && password.length <= 8)){ 
-    window.location ="home.html";
+        localStorage.setItem("usuario", usuario);
+        window.location ="home.html";
     return false
     } 
     else{

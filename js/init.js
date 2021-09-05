@@ -61,4 +61,5 @@ async function getjsondataasyinc(url){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  document.getElementById("toolbar").innerHTML +=`<p class="py-2 d-none d-md-inline-block" style="color: white"> Hola, ${localStorage.getItem("usuario")}`;
 });
