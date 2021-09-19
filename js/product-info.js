@@ -75,32 +75,111 @@ function showInfo(array){
     document.getElementById("secondcol").innerHTML += htmlContentToAppend;
 }
 
+function drawStars(stars){
+
+    let number = parseInt(stars);
+    let html="";
+    for(let i =1; i<=number;i++){
+        html +=`<span class="fa fa-star checked"></span>`
+
+    }
+    for(let j=number+1;j<=5;j++){
+        html +=`<span class="fa fa-star"></span>`
+    }    
+    return html;
+
+}
+
 function showComments(array){
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
-        htmlContentToAppend += `<div class="card p-3 mb-2">
-        <div class="d-flex flex-row"> <img src="https://i.imgur.com/dwiGgJr.jpg" height="40" width="40" class="rounded-circle">
-            <div class="d-flex flex-column ms-2">
-                <h6 class="mb-1 text-primary">${array[i].user}</h6>
-                <p class="comment-text">${array[i].description}</p>
+        if ( i === 0 ){
+            htmlContentToAppend += `<div class="card">
+            <div class="card-header" id="heading${i}">
+            <p style="text-align: right;">${array[i].dateTime}</p>
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+                ${array[i].user}&nbsp&nbsp<small>${drawStars(array[i].score)}</small>
+                </button>
+              </h2>
+              
             </div>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div class="d-flex flex-row gap-3 align-items-center">
-                <div class="d-flex align-items-center"> <i class="fa fa-heart-o"></i> <span class="ms-1 fs-10">Like</span> </div>
-                <div class="d-flex align-items-center"> <i class="fa fa-comment-o"></i> <span class="ms-1 fs-10">Comments</span> </div>
+        
+            <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+              <div class="card-body">
+              ${array[i].description}
+              </div>
             </div>
-            <div class="d-flex flex-row"> <span class="text-muted fw-normal fs-10">May 22,2020 12:10 PM</span> </div>
-        </div>
-    </div>`
+          </div>`
+        }
+        else{
+            htmlContentToAppend += `<div class="card">
+            <div class="card-header" id="heading${i}">
+            <p style="text-align: right;">${array[i].dateTime}</p>
+              <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${i}" aria-expanded="false" aria-controls="collapse${i}">
+                ${array[i].user}&nbsp&nbsp<small>${drawStars(array[i].score)}</small>
+                </button>
+              </h2>
+              
+            </div>
+        
+            <div id="collapse${i}" class="collapse" aria-labelledby="heading${i}" data-parent="#accordionExample">
+              <div class="card-body">
+              ${array[i].description}
+              </div>
+            </div>
+          </div>`
+        }
     }
-    document.getElementById("comments").innerHTML += htmlContentToAppend;
+    document.getElementById("accordionExample").innerHTML += htmlContentToAppend;
 }
 
+let commentCount = 5
+
+function addComment(){
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy + "---" +  today.getHours() + ":"  
+    + today.getMinutes();
+    
+    var comentario=document.getElementById("textarea").value;
+    var score = document.getElementById("score").value;
+    var htmlContentToAppend =`<div class="card">
+    <div class="card-header" id="heading${commentCount}">
+    <p style="text-align: right;">${today}</p>
+      <h2 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse${commentCount}" aria-expanded="false" aria-controls="collapse${commentCount}">
+        ${localStorage.getItem("usuario")}&nbsp&nbsp<small>${drawStars(score)}</small>
+        </button>
+      </h2>
+      
+    </div>
+
+    <div id="collapse${commentCount}" class="collapse" aria-labelledby="heading${commentCount}" data-parent="#accordionExample">
+      <div class="card-body">
+      ${comentario}
+      </div>
+    </div>
+  </div>`
+    document.getElementById("accordionExample").innerHTML += htmlContentToAppend;
+    document.getElementById("textarea").value ="";
+    commentCount += 1
+}
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
+    getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            // comments = resultObj.data;
+            showComments(resultObj.data);
+        }
+    });
 
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
@@ -113,6 +192,7 @@ document.addEventListener("DOMContentLoaded", function(e){
             showPrice(category);
             showInfo(category);
         }
+        
     });
 
 });
