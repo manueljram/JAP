@@ -181,8 +181,8 @@ function showRelatedProducts(array, related){
                                             <div class="card" style="width: 10rem;">
                                                 <img src="${product.imgSrc}" class="card-img-top" alt="imagen de auto">
                                                 <div class="card-body">
-                                                    <h4 class="card-text">${product.name}</h4>
-                                                    <p><b>U$S.${product.cost}</b></p>
+                                                    <h6 class="card-text">${product.name}</h6>
+                                                    <small><b>U$S.${product.cost}</b></small>
                                                     <small>vendidos: ${product.soldCount}</small>
                                                 </div>
                                             </div>
