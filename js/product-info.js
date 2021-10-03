@@ -168,31 +168,80 @@ function addComment(){
     document.getElementById("textarea").value ="";
     commentCount += 1
 }
+
+
+function showRelatedProducts(array, related){
+    let htmlContentToAppend ="";
+    for (let i = 0; i <= related.length -1; i++){
+        current = related[i]
+        for (let i = 0; i <= array.length -1; i++){
+            if (current === i){
+                let product = array[i];
+                htmlContentToAppend += `<a href="product-info.html"><div class="col-md-3 col-sm-4 col-5">
+                                            <div class="card" style="width: 10rem;">
+                                                <img src="${product.imgSrc}" class="card-img-top" alt="imagen de auto">
+                                                <div class="card-body">
+                                                    <h4 class="card-text">${product.name}</h4>
+                                                    <p><b>U$S.${product.cost}</b></p>
+                                                    <small>vendidos: ${product.soldCount}</small>
+                                                </div>
+                                            </div>
+                                        </div></a>`
+            }
+            else{
+                continue
+            }
+        } 
+    }
+    document.getElementById("relatedProducts").innerHTML = htmlContentToAppend;
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok")
+        {
+            arrayProducts = resultObj.data;
+            getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
+                if (resultObj.status === "ok")
+                {
+                    arrayRelated = resultObj.data.relatedProducts;
+                    showRelatedProducts(arrayProducts, arrayRelated);
+                }
+            });
+            
+
+        }
+        
+    });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
             // comments = resultObj.data;
             showComments(resultObj.data);
+
         }
     });
 
     getJSONData(PRODUCT_INFO_URL).then(function(resultObj){
         if (resultObj.status === "ok")
         {
-            category = resultObj.data;
+            product = resultObj.data;
+            arrayRelated = product.relatedProducts;
 
             
-            document.getElementById("breadcrumb").innerHTML+= `<li class="breadcrumb-item active" aria-current="page">${category.name}</li>`
-            showCarousell(category.images);
-            showPrice(category);
-            showInfo(category);
+            document.getElementById("breadcrumb").innerHTML+= `<li class="breadcrumb-item active" aria-current="page">${product.name}</li>`
+            showCarousell(product.images);
+            showPrice(product);
+            showInfo(product);
         }
         
     });
-
+    
+    
+    
 });

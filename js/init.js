@@ -45,7 +45,7 @@ async function getjsondataasyinc(url){
   try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data) 
+      // console.log(data) 
       hideSpinner();
       return (data);
   } catch (error) {
@@ -56,10 +56,48 @@ async function getjsondataasyinc(url){
   
 }
 
+function showNavbar (){
+  document.getElementById("navbar").innerHTML = `<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="home.html">Inicio</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="categories.html">Categorias</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="products.html">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="sell.html">Vender</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Hola, ${localStorage.getItem("usuario")}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="my-profile.html">Ver mi Carrito</a>
+          <a class="dropdown-item" href="cart.html">Mi Perfil</a>
+          <button type="button" class="dropdown-item" onclick="logout()">Cerrar Sesión</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>`
+}
 
+function logout(){ 
+  localStorage.setItem("usuario", undefined);
+  window.location ="index.html";
+  
+  return false
+  
+  } 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  document.getElementById("toolbar").innerHTML +=`<p class="py-2 d-none d-md-inline-block" style="color: white"> Hola, ${localStorage.getItem("usuario")}`;
+  showNavbar();
 });
