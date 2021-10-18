@@ -3,7 +3,7 @@ let productosCarrito=[];
 
 
 
-/*completa la función para actualizar el subtotal del producto al modificar la cantidad del mismo*/
+/*función para actualizar el subtotal del producto al modificar la cantidad del mismo*/
 function updateProductoSubtotal(){
     let cost = 0;
     let cant = 0;
@@ -17,7 +17,7 @@ function updateProductoSubtotal(){
     document.getElementById("subtotal").innerHTML = "$ "+ subtotal;
 }
 
-/*modificar la función showCarrito para que aparezca el subtotal del producto en base a la cantidad y precio unitario*/
+/*función showCarrito para que aparezca el subtotal del producto en base a la cantidad y precio unitario*/
 function showCarrito(){
 
     /*mostrar los productos del carrito con el input correspondiente a la cantidad*/

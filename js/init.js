@@ -78,8 +78,8 @@ function showNavbar (){
         Hola, ${localStorage.getItem("usuario")}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="my-profile.html">Ver mi Carrito</a>
-          <a class="dropdown-item" href="cart.html">Mi Perfil</a>
+          <a class="dropdown-item" href="cart.html">Ver mi Carrito</a>
+          <a class="dropdown-item" href="my-profile.html">Mi Perfil</a>
           <button type="button" class="dropdown-item" onclick="logout()">Cerrar Sesión</button>
         </div>
       </li>
