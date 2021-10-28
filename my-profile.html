@@ -31,19 +31,71 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link href="css/dropzone.css" rel="stylesheet">
+  <script src="js/my-profile.js"></script>
 </head>
 
 <body>
-  <div class="container" id="navbar">
+  <div id="navbar">
       
   </div>
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <h4 style="text-align: center;">Información de Perfil</h4>
+    <b>Nombre: </b><p id="name"></p>
+    <b>Edad: </b><p id="age"></p>
+    <b>E-mail: </b><p id="email"></p>
+    <b>Contacto: </b><p id="phone"></p>
+  </div>
+  <div class="container">
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Modificar Perfil
+            </button>
+          </h2>
+        </div>
+    
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <form action="">
+              <div class="row">
+                <label class="col-sm-3" for="nameEdit">Nombre(s)</label>
+                <input class="col-sm-3" type="text" name="name" id="nameEdit" value="">
+              </div>
+              <br>
+              <div class="row">
+              <label class="col-sm-3" for="lastnameEdit">Apellido(s)</label>
+              <input class="col-sm-3" type="text" name="lastname" id="lastnameEdit">
+              </div>
+              <br>
+              <div class="row">
+              <label class="col-sm-3" for="ageEdit">Edad</label>
+              <input class="col-sm-3" type="text" name="age" id="ageEdit">
+              </div>
+              <br>
+              <div class="row">
+              <label class="col-sm-3" for="emailEdit">Email</label>
+              <input class="col-sm-3" type="text" name="email" id="emailEdit">
+              </div>
+              <br>
+              <div class="row">
+              <label class="col-sm-3" for="phoneEdit">Numero Telefonico</label>
+              <input class="col-sm-3" type="text" name="phone" id="phoneEdit">
+              </div>
+              <br>
+              
+            </form>
+            <div class="row">
+              <button onclick="updateData()">
+                Actualizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
@@ -69,7 +121,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
   <script src="js/init.js"></script>
-  <script src="js/my-profile.js"></script>
+  
 </body>
 
 </html>

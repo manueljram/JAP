@@ -60,6 +60,5 @@ document.addEventListener("DOMContentLoaded", function(e){
     .then(respuesta=>{
         productosCarrito = respuesta.articles;
         showCarrito();
-        console.log(productosCarrito);
     })
 })
