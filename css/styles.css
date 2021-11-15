@@ -7,7 +7,7 @@
 }
 
 .jumbotron {
-  height: 50vh;
+  height: auto;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;

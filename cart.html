@@ -67,51 +67,133 @@
   <form name="envio" action="">
     <h4>Tipo de Envío</h4>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-      <label class="form-check-label" for="inlineRadio1">Premium  - 2 a 5 dias (15%)</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioPremium" value="option1" checked>
+      <label class="form-check-label" for="radioPremium">Premium  - 2 a 5 dias (15%)</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-      <label class="form-check-label" for="inlineRadio2">Express - 5 a 8 dias (7%)</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioExpres" value="option2">
+      <label class="form-check-label" for="radioExpres">Express - 5 a 8 dias (7%)</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3".>
-      <label class="form-check-label" for="inlineRadio3">Standard - 12 a 15 dias (5%)</label>
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="radioStandard" value="option3".>
+      <label class="form-check-label" for="radioStandard">Standard - 12 a 15 dias (5%)</label>
     </div>
     <br>
     <h4>Dirección de envío</h4>
     <div class="row"> 
-    <div class="form-group col-md-6">
-      <label for="InputDepartamento"></label>
-      <input type="email" class="form-control" id="InputDepartamento" aria-describedby="emailHelp" placeholder="Departamento">
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="InputDepartamento" aria-describedby="emailHelp" placeholder="Departamento">
+        <small id="smdepartamento"></small>
+      </div>
+      <div class="form-group col-md-6">
+        <input type="text" class="form-control" id="InputLocalidad" aria-describedby="emailHelp" placeholder="Localidad">
+        <small id="smlocalidad"></small>
+      </div>
     </div>
-  <div class="form-group col-md-6">
-    <label for="InputLocalidad"></label>
-    <input type="email" class="form-control" id="InputLocalidad" aria-describedby="emailHelp" placeholder="Localidad">
-  </div>
-  </div>
   <div class="row"> 
     <div class="form-group col-md-6">
-      <label for="InputCalle"></label>
-      <input type="email" class="form-control" id="InputCalle" aria-describedby="emailHelp" placeholder="Calle">
+      <input type="text" class="form-control" id="InputCalle" aria-describedby="emailHelp" placeholder="Calle">
+      <small id="smcalle"></small>
     </div>
-    <div class="form-group col-md-6">
-      <label for="InputNumero"></label>
-      <input type="email" class="form-control" id="InputNumero" aria-describedby="emailHelp" placeholder="Numero">
+    <div class="form-group col-md-3">
+      <input type="text" class="form-control" id="InputNumero" aria-describedby="emailHelp" placeholder="Numero">
+      <small id="smnumero"></small>
+    </div>
+    <div class="form-group col-md-3";">
+      <input type="checkbox" id="InputBis" name="bis" value="bis">
+      <label for="InputBis">Bis</label>
     </div>
     </div>
     <div class="row"> 
       <div class="form-group col-md-6">
-        <label for="InputEsquina"></label>
-        <input type="email" class="form-control" id="InputEsquina" aria-describedby="emailHelp" placeholder="Esquina">
-    
+        <input type="text" class="form-control" id="InputEsquina" aria-describedby="emailHelp" placeholder="Esquina">
       </div>
       
       <div class="col"> 
       </div>
       </div>
-  </form>
-  </div>
+      <div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Metodo de Pago
+        </button>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Metodo de Pago</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <form action="">
+                    <input type="radio" name="payMethod" id="creditCardPay">
+                    <label for="creditCardPay">Tarjeta de Credito</label>
+                    <hr>
+                    <div class="row" style="margin-bottom: 1%;margin-right: 1%;">
+                      <label class="col">Numero de Tarjeta</label>
+                      <div class="col">
+                        <input class="form-control" type="text" id="cardNumber">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col"></div>
+                      <small class="col" id="smcardnumber"></small>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 1%;margin-right: 1%;">
+                      <label class="col">Codigo de Seguridad</label>
+                      <div class="col">
+                        <input class="form-control" type="text" id="securityID">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col"></div>
+                      <small class="col" id="smsecurity"></small>
+                    </div>
+
+                    <div class="row" style="margin-bottom: 1%;margin-right: 1%;">
+                      <label class="col">Vencimiento (MM/AA)</label>
+                      <div class="col">
+                        <input class="form-control" type="text" id="vencimiento">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col"></div>
+                      <small class="col" id="smvencimiento"></small>
+                    </div>
+                    <hr>
+                    <input type="radio" name="payMethod" id="bankingPay">
+                    <label for="bankingPay">Deposito Bancario</label>
+                    <hr>
+                    <div class="row" style="margin-bottom: 1%;margin-right: 1%;">
+                      <label class="col">Numero de Cuenta</label>
+                      <div class="col">
+                        <input class="form-control" type="text" id="cuentanro">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col"></div>
+                      <small class="col" id="smcuenta"></small>
+                    </div>
+
+                  </form>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <small id="smmodal"></small>
+      </div>
+  
+  <hr>
+
   <div class="container">
     <div class="row">
       <div class="col align-self-end">
@@ -121,11 +203,24 @@
             <th>Subtotal: </th>
             <td id ="subtotal"></td>
           </tr>
+          <tr>
+            <th>Costo Envio: </th> 
+            <td id ="costoEnvio"></td>
+          </tr>
+          <tr>
+            <th>Total: </th> 
+            <td id ="total"></td>
+          </tr>
           </tfoot>
         </table>
       </div>
     </div>
   </div>
+  <button class="btn btn-primary" id="comprar">Comprar</button>
+</form>
+</div>
+  <br>
+  
   
   <div id="spinner-wrapper">
     <div class="lds-ring">
